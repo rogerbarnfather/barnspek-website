@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Prove a Scenario · Barnspec</title>
-  <meta name="description" content="Prove a Barnspec Scenario: open a ticket, generate and fill in Ports, run the Scenario and watch it turn green.">
-  <link rel="icon" href="../assets/base/barnspec.svg" type="image/svg+xml">
+  <title>Prove a Scenario · Barnspek</title>
+  <meta name="description" content="Prove a Barnspek Scenario: open a ticket, generate and fill in Ports, run the Scenario and watch it turn green.">
+  <link rel="icon" href="../assets/base/barnspek.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../assets/base/base.css">
   <link rel="stylesheet" href="../assets/site.css">
 </head>
@@ -14,8 +14,8 @@
 
   <header class="site-header">
     <div class="wrap">
-      <a class="wordmark" href="../index.html"><svg class="mark tool-mark" viewBox="0 0 32 32" aria-hidden="true"><g transform="translate(16 16) scale(1.45) translate(-16 -16.5)" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12.2" cy="16.6" r="2.9"/><circle cx="19.8" cy="16.6" r="2.9"/><path d="M15 16c.6-.7 1.4-.7 2 0"/><path d="M10.15 14.55C9.65 13.95 9.2 13.55 8.7 13.55M21.85 14.55C22.35 13.95 22.8 13.55 23.3 13.55"/></g></svg>Barnspec</a>
-      <nav aria-label="Barnspec">
+      <a class="wordmark" href="../index.html"><svg class="mark tool-mark" viewBox="0 0 32 32" aria-hidden="true"><g transform="translate(16 16) scale(1.45) translate(-16 -16.5)" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12.2" cy="16.6" r="2.9"/><circle cx="19.8" cy="16.6" r="2.9"/><path d="M15 16c.6-.7 1.4-.7 2 0"/><path d="M10.15 14.55C9.65 13.95 9.2 13.55 8.7 13.55M21.85 14.55C22.35 13.95 22.8 13.55 23.3 13.55"/></g></svg>Barnspek</a>
+      <nav aria-label="Barnspek">
         <ul class="nav">
           <li><a href="../philosophy.html">Philosophy</a></li>
           <li><a href="../quick-start.html">Quick start</a></li>
@@ -32,7 +32,7 @@
       <article class="docs-article">
         <h1>Prove a Scenario</h1>
         <p class="lede">A Scenario turns green when a real run passes, and for no other reason.</p>
-<p>Barnspec never takes anyone’s word that a story is done. A Scenario turns green only when a real run against your
+<p>Barnspek never takes anyone’s word that a story is done. A Scenario turns green only when a real run against your
 software passes. This page takes a Scenario from nothing to green. The commands were run, in order, in the hotel example.</p>
 <h2 id="colours">How a Scenario gets its colour <a class="anchor" href="#colours" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table><thead><tr><th scope="col">Colour</th><th scope="col">When</th></tr></thead><tbody><tr><td>Yellow</td><td>Some ticket for the Scenario is not done.</td></tr><tr><td>Green</td><td>Every ticket is done, and the last run passed.</td></tr><tr><td>Red</td><td>Every ticket is done, but the Scenario has never been run, or its last run failed.</td></tr><tr><td>No colour</td><td>It has no ticket and no run: nothing has been claimed about it yet.</td></tr></tbody></table></div>
@@ -44,12 +44,12 @@ last run, because the evidence predates the new work.</p>
 <h2 id="ticket">Open a ticket <a class="anchor" href="#ticket" aria-label="Link to this section">#</a></h2>
 <p>A ticket tracks one piece of work against one Scenario. It needs a title and a description. The reference is
 optional, for a ticket in another system.</p>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec work:create reservations book-a-room-for-a-run-of-nights \
+<pre><code><span class="p">$ </span>vendor/bin/barnspek work:create reservations book-a-room-for-a-run-of-nights \
     book-a-room-for-three-nights --title="Book a room" \
     --description="Let a guest hold a free room" --reference=HOTEL-1
 Barn: …/hotel
 Created work ticket 01a1cb3e-… for scenario 01a1cb3e-…: Book a room</code></pre>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec work:list reservations book-a-room-for-a-run-of-nights \
+<pre><code><span class="p">$ </span>vendor/bin/barnspek work:list reservations book-a-room-for-a-run-of-nights \
     book-a-room-for-three-nights
 Barn: …/hotel
 Scenario: book a room for three nights — yellow
@@ -61,7 +61,7 @@ Not yet run — prove it with `scenario-bridge run`; until then it stays red.
 <p>A Scenario is run against <a href="glossary.html#port">Ports</a>: small classes you fill in that connect its words to your software. Two
 more Composer packages generate and run them:</p>
 <pre><code><span class="p">$ </span>composer require --dev rmb32/port-generator rmb32/scenario-bridge</code></pre>
-<p>Tell the generator where to put the Ports, in <code>.barn/barnspec/settings.json</code>, and make sure Composer can load
+<p>Tell the generator where to put the Ports, in <code>.barn/barnspek/settings.json</code>, and make sure Composer can load
 them (here, by adding <code>"autoload-dev": {"psr-4": {"App\\Tests\\": "tests/"}}</code> to your <code>composer.json</code> and running
 <code>composer dump-autoload</code>):</p>
 <pre><code>{"portStubs": {"directory": "tests/Spec/Port", "namespace": "App\\Tests\\Spec\\Port"}}</code></pre>
@@ -120,7 +120,7 @@ the role. In this example they use a small in-memory store; in a real project th
         ✅ When they book a room for three nights they expect it to be accepted and it was accepted
         ✅ they expect that BookingIsConfirmed()
 Recorded this run against the Scenario (passed).</code></pre>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec work:list reservations book-a-room-for-a-run-of-nights \
+<pre><code><span class="p">$ </span>vendor/bin/barnspek work:list reservations book-a-room-for-a-run-of-nights \
     book-a-room-for-three-nights
 Barn: …/hotel
 Scenario: book a room for three nights — yellow
@@ -128,14 +128,14 @@ Scenario: book a room for three nights — yellow
 Last run passed at 2026-11-11T15:34:00+00:00.
 01a1cb3e-…  To do  Book a room  [HOTEL-1]</code></pre>
 <p>The run passed, but the ticket is still open, so the Scenario is still yellow. Move the ticket on:</p>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec work:status reservations &lt;ticket-id&gt; in-progress
+<pre><code><span class="p">$ </span>vendor/bin/barnspek work:status reservations &lt;ticket-id&gt; in-progress
 Barn: …/hotel
 Ticket 01a1cb3e-… moved to In progress</code></pre>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec work:status reservations &lt;ticket-id&gt; done
+<pre><code><span class="p">$ </span>vendor/bin/barnspek work:status reservations &lt;ticket-id&gt; done
 Barn: …/hotel
 Ticket 01a1cb3e-… moved to Done</code></pre>
 <p>The status is <code>to-do</code>, <code>in-progress</code> or <code>done</code>. With the ticket done and the run passed:</p>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec work:list reservations book-a-room-for-a-run-of-nights \
+<pre><code><span class="p">$ </span>vendor/bin/barnspek work:list reservations book-a-room-for-a-run-of-nights \
     book-a-room-for-three-nights
 Barn: …/hotel
 Scenario: book a room for three nights — green
@@ -155,7 +155,7 @@ Recorded 1 scenario run(s) against Work.</code></pre>
 <pre><code><span class="p">$ </span>vendor/bin/port-generator check reservations
 Nothing stale — every generated stub matches the captured vocabulary.</code></pre>
 <h2 id="delete-ticket">Scrap a ticket <a class="anchor" href="#delete-ticket" aria-label="Link to this section">#</a></h2>
-<p><code>vendor/bin/barnspec work:delete reservations &lt;ticket-id&gt;</code> removes a ticket at any time. The runs stay, so
+<p><code>vendor/bin/barnspek work:delete reservations &lt;ticket-id&gt;</code> removes a ticket at any time. The runs stay, so
 deleting a done ticket changes no colour. Releasing a Phase deletes the done tickets of Scenarios that have been run; tickets are
 disposable.</p>
         <div class="docs-next"><a href="read.html">← Read what you captured</a><a href="phases.html">Phases, releasing and changing →</a></div>
@@ -165,7 +165,7 @@ disposable.</p>
 
   <footer class="site-footer">
     <div class="wrap">
-      <span>Barnspec · © Roger Barnfather</span>
+      <span>Barnspek · © Roger Barnfather</span>
       <nav aria-label="Footer">
         <a href="../index.html">Introduction</a>
         <a href="../philosophy.html">Philosophy</a>

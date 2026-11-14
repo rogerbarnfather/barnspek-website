@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Phases, releasing and changing · Barnspec</title>
-  <meta name="description" content="Release a Barnspec Phase, change a released story by elaboration, and record whether a story delivered its reward.">
-  <link rel="icon" href="../assets/base/barnspec.svg" type="image/svg+xml">
+  <title>Phases, releasing and changing · Barnspek</title>
+  <meta name="description" content="Release a Barnspek Phase, change a released story by elaboration, and record whether a story delivered its reward.">
+  <link rel="icon" href="../assets/base/barnspek.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../assets/base/base.css">
   <link rel="stylesheet" href="../assets/site.css">
 </head>
@@ -14,8 +14,8 @@
 
   <header class="site-header">
     <div class="wrap">
-      <a class="wordmark" href="../index.html"><svg class="mark tool-mark" viewBox="0 0 32 32" aria-hidden="true"><g transform="translate(16 16) scale(1.45) translate(-16 -16.5)" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12.2" cy="16.6" r="2.9"/><circle cx="19.8" cy="16.6" r="2.9"/><path d="M15 16c.6-.7 1.4-.7 2 0"/><path d="M10.15 14.55C9.65 13.95 9.2 13.55 8.7 13.55M21.85 14.55C22.35 13.95 22.8 13.55 23.3 13.55"/></g></svg>Barnspec</a>
-      <nav aria-label="Barnspec">
+      <a class="wordmark" href="../index.html"><svg class="mark tool-mark" viewBox="0 0 32 32" aria-hidden="true"><g transform="translate(16 16) scale(1.45) translate(-16 -16.5)" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12.2" cy="16.6" r="2.9"/><circle cx="19.8" cy="16.6" r="2.9"/><path d="M15 16c.6-.7 1.4-.7 2 0"/><path d="M10.15 14.55C9.65 13.95 9.2 13.55 8.7 13.55M21.85 14.55C22.35 13.95 22.8 13.55 23.3 13.55"/></g></svg>Barnspek</a>
+      <nav aria-label="Barnspek">
         <ul class="nav">
           <li><a href="../philosophy.html">Philosophy</a></li>
           <li><a href="../quick-start.html">Quick start</a></li>
@@ -34,16 +34,16 @@
         <p class="lede">Release a slice of work, and change what was released without rewriting it. We learn as we work, which is why the slices are small.</p>
 <h2 id="release">Release a Phase <a class="anchor" href="#release" aria-label="Link to this section">#</a></h2>
 <p>A Phase can be released only once it is proven: every story in it green, each Scenario with its tickets done and a
-passing run. A Phase with no stories has nothing proven, so it cannot be released. When something is not proven, Barnspec says
+passing run. A Phase with no stories has nothing proven, so it cannot be released. When something is not proven, Barnspek says
 what:</p>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec release-phase --area-of-business=reservations
+<pre><code><span class="p">$ </span>vendor/bin/barnspek release-phase --area-of-business=reservations
 Barn: …/hotel
 first bookings can't be released until it is proven. These aren't proven yet:
   - guest: book-a-room-for-a-run-of-nights (story, expressed)
   - guest: cancel-their-booking (story, rough)
   Each scenario needs its tickets done and a passing run (scenario-bridge run).</code></pre>
 <p>Once everything is proven, <code>release-phase</code> lists what the release will lock, and asks before it goes ahead. <code>--yes</code> agrees without being asked.</p>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec release-phase --area-of-business=reservations --yes
+<pre><code><span class="p">$ </span>vendor/bin/barnspek release-phase --area-of-business=reservations --yes
 Barn: …/hotel
 Releasing first bookings locks these, so they change only through an elaboration afterwards:
   - phase: first bookings
@@ -60,22 +60,22 @@ Phase released: first bookings (reservations)
   Start the next one with: create-phase --area-of-business=reservations --title=... --meaning=...</code></pre>
 <aside class="callout warning"><p><strong>Warning.</strong> Releasing locks the Phase’s stories, their roles and every building block its Scenarios use. They keep exactly the wording they had, and from then on they change only by elaboration.</p></aside>
 <p>The next Phase can then begin. Only one Phase per area of business is being built at a time, so a new one can be made only after the active one is released.</p>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec create-phase --area-of-business=reservations \
+<pre><code><span class="p">$ </span>vendor/bin/barnspek create-phase --area-of-business=reservations \
     --title="changing plans" --meaning="guests can cancel"
 Barn: …/hotel
 Phase created: changing plans
   id: 01a1cb3e-…</code></pre>
 <h2 id="elaborate">Change a released story <a class="anchor" href="#elaborate" aria-label="Link to this section">#</a></h2>
-<p>A released story’s wording and Scenarios no longer change directly. Asking Barnspec to change them tells you what to do
+<p>A released story’s wording and Scenarios no longer change directly. Asking Barnspek to change them tells you what to do
 instead:</p>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec reword --area-of-business=reservations \
+<pre><code><span class="p">$ </span>vendor/bin/barnspek reword --area-of-business=reservations \
     --story=book-a-room-for-a-run-of-nights --goal=zzz
 Barn: …/hotel
-Story 'book-a-room-for-a-run-of-nights' is released, so its wording no longer changes directly. Elaborate it in the open Phase instead: barnspec elaborate-story --area-of-business=reservations --story=book-a-room-for-a-run-of-nights --goal=... --reward=...</code></pre>
+Story 'book-a-room-for-a-run-of-nights' is released, so its wording no longer changes directly. Elaborate it in the open Phase instead: barnspek elaborate-story --area-of-business=reservations --story=book-a-room-for-a-run-of-nights --goal=... --reward=...</code></pre>
 <p>That is an <strong>elaboration</strong>: the story, opened in the Phase being worked on now. It can reword the story,
 add Scenarios, amend a Scenario (a whole new case that replaces the old one) and retire a Scenario that no longer holds. Each
 story has at most one elaboration per Phase.</p>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec elaborate-story --area-of-business=reservations \
+<pre><code><span class="p">$ </span>vendor/bin/barnspek elaborate-story --area-of-business=reservations \
     --story=book-a-room-for-a-run-of-nights --goal="book a room for any run of nights"
 Barn: …/hotel
 Elaborated book-a-room-for-a-run-of-nights in changing plans.
@@ -93,12 +93,12 @@ its Phase back; one that adds or amends must be proven like any other work.</p>
 Phase the story shipped in, as a dated, attributed observation, in one of four states:</p>
 <div class="table-wrap"><table><thead><tr><th scope="col">State</th><th scope="col">Meaning</th></tr></thead><tbody><tr><td><code>evaluating</code></td><td>Released, but too early to say. This is never stored: a released story with no answer is evaluating.</td></tr><tr><td><code>achieved</code></td><td>The reward was delivered.</td></tr><tr><td><code>none</code></td><td>The story works as specified, and did not deliver its reward.</td></tr><tr><td><code>superseded</code></td><td>The reward no longer matters: the need moved on, or another story answers it.</td></tr></tbody></table></div>
 <p>List the released stories whose reward nobody has settled, then record what was observed:</p>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec outstanding-impacts --area-of-business=reservations
+<pre><code><span class="p">$ </span>vendor/bin/barnspek outstanding-impacts --area-of-business=reservations
 Barn: …/hotel
 1 released story has a reward nobody has settled yet:
   first bookings — book-a-room-for-a-run-of-nights: evaluating
   Record what was observed with: record-impact --area-of-business=reservations --story=... --phase=... --state=... --observation=... --source=... --who=...</code></pre>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec record-impact --area-of-business=reservations \
+<pre><code><span class="p">$ </span>vendor/bin/barnspek record-impact --area-of-business=reservations \
     --story=book-a-room-for-a-run-of-nights --state=achieved \
     --observation="A returning guest booked a room in one visit" \
     --source=on-their-behalf --who="the front desk manager"
@@ -109,7 +109,7 @@ Recorded the impact of book-a-room-for-a-run-of-nights in first bookings: achiev
 reads “achieved, awaiting the role’s word” and keeps being asked about. <code>none</code> and <code>superseded</code> are settled
 whoever says them. Once settled, an impact takes no more observations. If value later slips, that is a failing Scenario or a new
 elaboration, never a reopened impact.</p>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec outstanding-impacts --area-of-business=reservations
+<pre><code><span class="p">$ </span>vendor/bin/barnspek outstanding-impacts --area-of-business=reservations
 Barn: …/hotel
 Every released story of 'reservations' has its reward settled.</code></pre>
 <aside class="callout note"><p><strong>Note.</strong> Releasing a Phase asks about earlier Phases’ rewards, and you can leave any answer blank. It never refuses to release because a reward is unanswered, and an impact never changes a story’s colour.</p></aside>
@@ -120,7 +120,7 @@ Every released story of 'reservations' has its reward settled.</code></pre>
 
   <footer class="site-footer">
     <div class="wrap">
-      <span>Barnspec · © Roger Barnfather</span>
+      <span>Barnspek · © Roger Barnfather</span>
       <nav aria-label="Footer">
         <a href="../index.html">Introduction</a>
         <a href="../philosophy.html">Philosophy</a>

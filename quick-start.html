@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quick start · Barnspec</title>
-  <meta name="description" content="Install Barnspec, capture a first story and a Scenario, and see them on the story map.">
-  <link rel="icon" href="assets/base/barnspec.svg" type="image/svg+xml">
+  <title>Quick start · Barnspek</title>
+  <meta name="description" content="Install Barnspek, capture a first story and a Scenario, and see them on the story map.">
+  <link rel="icon" href="assets/base/barnspek.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/base/base.css">
   <link rel="stylesheet" href="assets/site.css">
 </head>
@@ -14,8 +14,8 @@
 
   <header class="site-header">
     <div class="wrap">
-      <a class="wordmark" href="index.html"><svg class="mark tool-mark" viewBox="0 0 32 32" aria-hidden="true"><g transform="translate(16 16) scale(1.45) translate(-16 -16.5)" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12.2" cy="16.6" r="2.9"/><circle cx="19.8" cy="16.6" r="2.9"/><path d="M15 16c.6-.7 1.4-.7 2 0"/><path d="M10.15 14.55C9.65 13.95 9.2 13.55 8.7 13.55M21.85 14.55C22.35 13.95 22.8 13.55 23.3 13.55"/></g></svg>Barnspec</a>
-      <nav aria-label="Barnspec">
+      <a class="wordmark" href="index.html"><svg class="mark tool-mark" viewBox="0 0 32 32" aria-hidden="true"><g transform="translate(16 16) scale(1.45) translate(-16 -16.5)" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12.2" cy="16.6" r="2.9"/><circle cx="19.8" cy="16.6" r="2.9"/><path d="M15 16c.6-.7 1.4-.7 2 0"/><path d="M10.15 14.55C9.65 13.95 9.2 13.55 8.7 13.55M21.85 14.55C22.35 13.95 22.8 13.55 23.3 13.55"/></g></svg>Barnspek</a>
+      <nav aria-label="Barnspek">
         <ul class="nav">
           <li><a href="philosophy.html">Philosophy</a></li>
           <li><a href="quick-start.html" aria-current="page">Quick start</a></li>
@@ -34,23 +34,23 @@
 <p>You need PHP 8.5 or later and Composer. Every command on this page was run in a new folder, with a
 hotel as the example, and the output shown is what it printed. It takes about ten minutes.</p>
 <h2 id="install">Install <a class="anchor" href="#install" aria-label="Link to this section">#</a></h2>
-<p>Barnspec is three Composer packages. <a href="https://packagist.org/packages/rmb32/barnspec">barnspec</a> is
-the library, <a href="https://packagist.org/packages/rmb32/barnspec-cli">barnspec-cli</a> provides the
-<code>vendor/bin/barnspec</code> command, and <a href="https://packagist.org/packages/rmb32/barnspec-gui">barnspec-gui</a>
+<p>Barnspek is three Composer packages. <a href="https://packagist.org/packages/rmb32/barnspek">barnspek</a> is
+the library, <a href="https://packagist.org/packages/rmb32/barnspek-cli">barnspek-cli</a> provides the
+<code>vendor/bin/barnspek</code> command, and <a href="https://packagist.org/packages/rmb32/barnspek-gui">barnspek-gui</a>
 adds the browser app. From your project’s root:</p>
-<pre><code><span class="p">$ </span>composer require --dev rmb32/barnspec rmb32/barnspec-cli rmb32/barnspec-gui</code></pre>
+<pre><code><span class="p">$ </span>composer require --dev rmb32/barnspek rmb32/barnspek-cli rmb32/barnspek-gui</code></pre>
 <h2 id="make-a-barn">Make a barn <a class="anchor" href="#make-a-barn" aria-label="Link to this section">#</a></h2>
-<p>Barnspec keeps what you capture in a folder called <code>.barn/</code> at the root of the project. <code>init</code> makes it.</p>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec init
+<p>Barnspek keeps what you capture in a folder called <code>.barn/</code> at the root of the project. <code>init</code> makes it.</p>
+<pre><code><span class="p">$ </span>vendor/bin/barnspek init
 Made a barn: …/hotel
-Barnspec keeps its spec in: …/hotel/.barn/barnspec</code></pre>
-<p>Commit <code>.barn/</code> with your code: it is the specification. Barnspec finds it from any folder inside the project.</p>
+Barnspek keeps its spec in: …/hotel/.barn/barnspek</code></pre>
+<p>Commit <code>.barn/</code> with your code: it is the specification. Barnspek finds it from any folder inside the project.</p>
 <h2 id="capture-a-story">Capture a story <a class="anchor" href="#capture-a-story" aria-label="Link to this section">#</a></h2>
 <p>A story says who wants something and why, in one sentence: the <strong>role</strong> wants to
 <strong>goal</strong>, so they <strong>reward</strong>. Roles belong to an <dfn><a href="docs/glossary.html#area-of-business">area of
 business</a></dfn>, a distinct part of what the business does. The first story creates the area of business, its role and its first
 <a href="docs/glossary.html#phase">Phase</a> (a slice of work).</p>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec create-story --area-of-business=reservations \
+<pre><code><span class="p">$ </span>vendor/bin/barnspek create-story --area-of-business=reservations \
     --area-of-business-meaning="booking and keeping rooms" \
     --phase="first bookings" --phase-meaning="guests can book a room" \
     --role=guest --role-meaning="choosing and securing somewhere to stay" \
@@ -64,7 +64,7 @@ Story created:
   stage: transact
   story id: 01a1cb3e-…</code></pre>
 <p>The stage says where in a guest’s dealings with the hotel the story sits. It is optional. A second story reuses the same area of business and role, so it only needs the new words:</p>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec create-story --area-of-business=reservations --role=guest \
+<pre><code><span class="p">$ </span>vendor/bin/barnspek create-story --area-of-business=reservations --role=guest \
     --goal="cancel their booking" --reward="are not held to a stay they will not take" \
     --stage=resolve
 Barn: …/hotel
@@ -104,14 +104,14 @@ things stand, <em>when</em> the role does something, <em>then</em> what holds af
         }
     ]
 }</code></pre>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec create-scenario --file=scenario.json
+<pre><code><span class="p">$ </span>vendor/bin/barnspek create-scenario --file=scenario.json
 Barn: …/hotel
 Scenario saved: 01a1cb3e-…</code></pre>
 <p>Each new word, such as <code>room</code> or <code>is-available</code>, is given its meaning the first time it
 appears and is reused from then on.</p>
-<aside class="callout note"><p><strong>Note.</strong> For a person at a keyboard, <code>vendor/bin/barnspec refine</code> asks for the same things one question at a time. The browser app does too.</p></aside>
+<aside class="callout note"><p><strong>Note.</strong> For a person at a keyboard, <code>vendor/bin/barnspek refine</code> asks for the same things one question at a time. The browser app does too.</p></aside>
 <h2 id="see-what-you-have">See what you have <a class="anchor" href="#see-what-you-have" aria-label="Link to this section">#</a></h2>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec show reservations
+<pre><code><span class="p">$ </span>vendor/bin/barnspek show reservations
 Barn: …/hotel
 reservations — booking and keeping rooms
 
@@ -130,7 +130,7 @@ reservations — booking and keeping rooms
 
   action: book a room for three nights
       parameter: nights (integer) — how many nights to stay</code></pre>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec map --area-of-business=reservations
+<pre><code><span class="p">$ </span>vendor/bin/barnspek map --area-of-business=reservations
 Barn: …/hotel
 Story map — reservations
 
@@ -151,7 +151,7 @@ Follow Up
 Terminate
   (no stories)</code></pre>
 <p>The map lists every story once, under the stage it sits at. Both stories read “planned” because their Phase has not been released. To turn each story into a readable document:</p>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec write reservations --output-dir=docs/stories
+<pre><code><span class="p">$ </span>vendor/bin/barnspek write reservations --output-dir=docs/stories
 Barn: …/hotel
 Wrote: docs/stories/book-a-room-for-a-run-of-nights.md
 Wrote: docs/stories/book-a-room-for-a-run-of-nights.html
@@ -179,31 +179,31 @@ Wrote: docs/stories/cancel-their-booking.html</code></pre>
 **Then**
 - holds the room for the guest on these nights</code></pre>
 <h2 id="open-the-browser-app">Open the browser app <a class="anchor" href="#open-the-browser-app" aria-label="Link to this section">#</a></h2>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec gui</code></pre>
+<pre><code><span class="p">$ </span>vendor/bin/barnspek gui</code></pre>
 <p>This serves the barn on your own machine and opens it in your browser; stop it with Ctrl-C. It lists the areas of
 business, and opening <em>reservations</em> shows the same story map with a card for each story. The
 <a href="docs/gui.html">browser app</a> page covers the rest.</p>
 <h2 id="agent-skills">Let your AI agent help <a class="anchor" href="#agent-skills" aria-label="Link to this section">#</a></h2>
-<p>If you work with an AI agent, copy Barnspec’s agent skills into the project:</p>
-<pre><code><span class="p">$ </span>vendor/bin/barnspec skills:install
-barnspec-getting-started: 2 written, 0 up to date, 0 left as you changed them
-barnspec-phases: 1 written, 0 up to date, 0 left as you changed them
-barnspec-shaping-a-phase: 2 written, 0 up to date, 0 left as you changed them
-barnspec-writing-scenarios: 1 written, 0 up to date, 0 left as you changed them
-barnspec-writing-stories: 1 written, 0 up to date, 0 left as you changed them
+<p>If you work with an AI agent, copy Barnspek’s agent skills into the project:</p>
+<pre><code><span class="p">$ </span>vendor/bin/barnspek skills:install
+barnspek-getting-started: 2 written, 0 up to date, 0 left as you changed them
+barnspek-phases: 1 written, 0 up to date, 0 left as you changed them
+barnspek-shaping-a-phase: 2 written, 0 up to date, 0 left as you changed them
+barnspek-writing-scenarios: 1 written, 0 up to date, 0 left as you changed them
+barnspek-writing-stories: 1 written, 0 up to date, 0 left as you changed them
 Skills are in …/hotel/.claude/skills</code></pre>
-<p>These are five skills in <code>.claude/skills/</code>, the folder Claude Code reads (<code>--dir=&lt;folder&gt;</code> for another agent’s). They teach your agent what Barnspec keeps, the commands that read and the ones that write, and how to write Stories, Scenarios and Phases the Barnspec way. Ask it to turn a description of what you want next into a Phase, review your Stories, or check whether a Phase is ready to release: it reads what you have captured first, drafts, asks you grouped questions, and writes through the commands only once you agree.</p>
-<p>Run the command again after updating Barnspec: files you have changed are kept unless you pass <code>--force</code>.</p>
+<p>These are five skills in <code>.claude/skills/</code>, the folder Claude Code reads (<code>--dir=&lt;folder&gt;</code> for another agent’s). They teach your agent what Barnspek keeps, the commands that read and the ones that write, and how to write Stories, Scenarios and Phases the Barnspek way. Ask it to turn a description of what you want next into a Phase, review your Stories, or check whether a Phase is ready to release: it reads what you have captured first, drafts, asks you grouped questions, and writes through the commands only once you agree.</p>
+<p>Run the command again after updating Barnspek: files you have changed are kept unless you pass <code>--force</code>.</p>
 <h2 id="where-next">Where next <a class="anchor" href="#where-next" aria-label="Link to this section">#</a></h2>
 <ul><li><a href="docs/prove.html">Prove a Scenario</a>: open a ticket, run the Scenario against your real software and watch it turn green.</li><li><a href="docs/phases.html">Phases, releasing and changing</a>: how a slice of work is released, and how a released story changes.</li><li><a href="philosophy.html">Philosophy</a>: why stories are written this way.</li></ul>
-<p class="in-barn-left">Used in Barn: in a <a href="https://rogerbarnfather.github.io/barn-website/barn.html">barn</a>, Barnspec is the Spec tab. <code>barnspec init</code> makes any project a barn so Barnspec can work on its own.</p>
+<p class="in-barn-left">Used in Barn: in a <a href="https://rogerbarnfather.github.io/barn-website/barn.html">barn</a>, Barnspek is the Spec tab. <code>barnspek init</code> makes any project a barn so Barnspek can work on its own.</p>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="wrap">
-      <span>Barnspec · © Roger Barnfather</span>
+      <span>Barnspek · © Roger Barnfather</span>
       <nav aria-label="Footer">
         <a href="index.html">Introduction</a>
         <a href="philosophy.html">Philosophy</a>
